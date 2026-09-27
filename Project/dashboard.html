@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="project.css">
+</head>
+   <body>
+
+     <header class="navbar">
+     <div class="navbar-inner">
+    <a href="dashboard.html" class="brand">BORA HUB</a>
+    <div class="nav-right">
+      <button type="button" id="logoutBtn" class="nav-avatar"></button>
+    </div>
+  </div>
+</header>
+
+  <main class="container">
+      <section class="welcome">
+      <h1>Hello, <span id="userName"></span></h1>
+      <h3>What's on your mind today?</h3>
+    </section>
+
+    <section class="signupbox panel">
+      <h2 id="formTitle">Write a new post</h2>
+      <form id="postForm">
+        <input type="text" id="postTitle" placeholder="Give it a title">
+        <br><br>
+        <textarea id="postBody" placeholder="Start writing..." rows="5"></textarea>
+        <br><br>
+          <div class="field-image">
+    <label for="postImage">Photo (optional)</label>
+    <input type="file" id="postImage" accept="image/*">
+  </div>
+        <button type="submit" id="publishBtn">Publish</button>
+      </form>
+    </section>
+
+    <section class="posts-section">
+      <div class="section-head">
+        <h2>Your posts</h2>
+        <span class="count" id="postCount">0 posts</span>
+      </div>
+
+      <div id="emptyState" class="empty-state hidden">
+          <p>You haven't written anything yet. Your posts will show up here.</p>
+      </div>
+
+      <ul id="postList" class="post-list"></ul>
+    </section>
+
+  </main>
+
+  <script>
+  let allUsers = JSON.parse(localStorage.getItem('SeptUsers26')) || []
+  let currentUserIndex = JSON.parse(localStorage.getItem('currentUserIndex'))
+  let currentUser = allUsers[currentUserIndex]
+
+  if (!currentUser) {
+    location.href = 'sign-in.html'
+  }
+
+  let POSTS_KEY = 'BoraHubPosts'
+
+  function getPosts() {
+    return JSON.parse(localStorage.getItem(POSTS_KEY)) || []
+  }
+  function savePosts(posts) {
+    localStorage.setItem(POSTS_KEY, JSON.stringify(posts))
+  }
+  function formatDate(timestamp) {
+    return new Date(timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  }
+  function renderPosts() {
+    let posts = getPosts()
+    let list = document.getElementById('postList')
+    let empty = document.getElementById('emptyState')
+    let count = document.getElementById('postCount')
+    count.textContent = posts.length + (posts.length === 1 ? ' post' : ' posts')
+    empty.classList.toggle('hidden', posts.length !== 0)
+    list.innerHTML = ''
+    posts.slice().reverse().forEach((post) => {
+      let li = document.createElement('li')
+      li.className = 'post'
+      li.innerHTML =
+        '<h3 class="post-title">' + post.title + '</h3>' +
+        '<p class="post-meta">' + post.authorName + ' · ' + formatDate(post.date) + '</p>' +
+        (post.image ? '<img class="post-image" src="' + post.image + '">' : '') +
+        '<p class="post-body">' + post.body + '</p>'
+      list.appendChild(li)
+    })
+  }
+
+  document.getElementById('postForm').addEventListener('submit', function (ev) {
+  ev.preventDefault()
+  let title = document.getElementById('postTitle').value.trim()
+  let body = document.getElementById('postBody').value.trim()
+  let file = document.getElementById('postImage').files[0]
+
+  if (!title || !body) {
+    alert('add a title and some content before publishing')
+    return
+  }
+
+  function publishPost(imageData) {
+    let posts = getPosts()
+    posts.push({
+      id: Date.now(),
+      title,
+      body,
+      date: Date.now(),
+      authorName: currentUser.fullName,
+      image: imageData || null
+    })
+    try {
+      savePosts(posts)
+    } catch (err) {
+      alert('Could not save. Try a smaller image.')
+      return
+    }
+    document.getElementById('postForm').reset()
+    renderPosts()
+  }
+
+  if (file) {
+    let reader = new FileReader()
+    reader.onload = function (e) {
+      publishPost(e.target.result)
+    }
+    reader.readAsDataURL(file)
+  } else {
+    publishPost(null)
+  }
+})
+
+  document.getElementById('logoutBtn').addEventListener('click', function () {
+    if (confirm('Log out of Bora Hub?')) {
+      localStorage.removeItem('currentUserIndex')
+      location.href = 'sign-in.html'
+    }
+  })
+
+  if (currentUser) {
+    document.getElementById('logoutBtn').textContent = currentUser.fullName.charAt(0).toUpperCase()
+    document.getElementById('logoutBtn').title = currentUser.email + ' — click to log out'
+    document.getElementById('userName').textContent = currentUser.fullName.split(' ')[0]
+    renderPosts()
+  }
+   
+
+
+</script>
+  
+</body>
+</html>""

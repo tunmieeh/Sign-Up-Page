@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="project.css">
+</head>
+<body class="auth-page">
+
+ 
+  <main class="auth-card">
+   <a href="sign-in.html" class="brand">BORA HUB</a>
+  <h1>Welcome back</h1>
+  
+  <p class="subtitle">Log in to continue and explore Bora Hub</p>
+
+
+  <div class="signupbox">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="email" placeholder="Email or Username">
+      <br><br>
+      <input type="password" id="password" placeholder="Password">
+      <br><br>
+      <button type="button" id="loginBtn" class="btn btn-block" onclick="logUserIn()">Log in</button>
+    </form>
+    <p class="switch-link">New here? <a href="index.html">Create an account</a></p> 
+  </div>
+</main>
+</body>
+<script>
+
+      let allUsers = JSON.parse(localStorage.getItem('SeptUsers26')) || []
+
+  
+function logUserIn() {
+  let email = document.getElementById('email').value.toLowerCase().trim()
+  let password = document.getElementById('password').value.trim()
+
+  let foundUser = allUsers.find((user)=> { return user.email === email })
+  let foundUserIndex = allUsers.findIndex((user)=> { return user.email === email })
+  if (!email || !password) {
+     alert('all fields are mandatory')
+  } else {
+
+    if (!foundUser) {
+       alert('user doesnt exist')
+    } else if ( foundUser.password !== password) {
+      alert('invalid credentials')
+    } else {
+      alert('log in successful')
+    localStorage.setItem('currentUserIndex' , JSON.stringify(foundUserIndex))
+     location.href = 'dashboard.html'
+    }
+
+  }
+
+  
+}
+</script>
+</html>
+
+

@@ -1,0 +1,300 @@
+body{
+    margin: 0;
+    background: url(https://img.magnific.com/free-vector/gradient-purple-color-background-modern-wave-abstract-designs_343694-2361.jpg?semt);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.auth-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.signupbox{
+    background: rgba(44, 66, 80, 0.7);
+    padding: 40px;
+    width: 250px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0.25);
+}
+
+form{
+    width: 240px;
+    text-align: center;
+    margin-top: -10px;
+}
+
+.login-link{
+    color: #ff4d6d; 
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-link:hover{
+    text-decoration: underline;
+    color: #ff8fa3;
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+input{
+    width: 240px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    font-size: 18px;
+    font-weight: 200;
+    padding: 10px 0;
+    transition: border 0.5s;
+    outline: none;
+    height: 35px;
+    color: whitesmoke;
+}
+
+
+button{
+    border: none;
+    width: 190px;
+    font-size: 20px;
+    line-height: 25px;
+    padding: 10px 0;
+    border-radius: 25px;
+    cursor: pointer;
+    }
+
+    button:hover{
+        background: pink;
+        }
+
+        h2{
+            color: pink;
+         }
+        
+
+         .SignIn{
+            color: white;
+        }
+
+        ::placeholder{
+          color: whitesmoke;
+          opacity: 0.5;
+        }
+
+
+    
+  .navbar{
+    display: flex;
+    justify-content: center;
+    background: rgba(44, 66, 80, 0.85);
+    padding: 16px 0;
+}
+.navbar-inner{
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: whitesmoke;
+}
+.nav-right{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.nav-user{
+    font-size: 14px;
+    color: whitesmoke;
+    opacity: 0.7;
+}
+
+.container{
+    width: 700px;
+    margin: 30px auto;
+    color: whitesmoke;
+}
+.welcome h1{
+    color: pink;
+    margin-bottom: 4px;
+}
+.welcome p{
+    opacity: 0.7;
+}
+
+.panel{
+    width: auto;
+    margin: 24px 0;
+}
+
+.panel textarea{
+    width: 240px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    color: whitesmoke;
+    font-size: 16px;
+    padding: 10px 0;
+    outline: none;
+    resize: vertical;
+}
+
+.section-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 10px;
+}
+
+.count{
+    background: pink;
+    color: rgba(44, 66, 80, 1);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.empty-state{
+    text-align: center;
+    padding: 30px;
+    border: 1px dashed rgba(255,255,255,0.3);
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+.post-list{
+    list-style: none;
+    padding: 0;
+}
+
+.post{
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding: 20px 0;
+}
+.post-title{
+    color: pink;
+    margin-bottom: 4px;
+}
+.post-meta{
+    font-size: 12px;
+    opacity: 0.6;
+    margin-bottom: 10px;
+}
+.post-body{
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+.post-actions{
+    display: flex;
+    gap: 16px;
+}
+.link-action{
+    background: none;
+    border: none;
+    color: #ff8fa3;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 0;
+}
+.link-action:hover{
+    text-decoration: underline;
+}
+
+.hidden{
+    display: none;
+}
+
+form{
+    width: 240px;
+    text-align: center;
+    margin: -10px auto 0; 
+}
+
+.checkbox-field{
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 240px;
+    margin: 12px auto 20px;
+    text-align: left;
+}
+
+.checkbox-field input{
+    width: auto;
+    height: auto;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.checkbox-field label{
+    font-size: 13px;
+    color: whitesmoke;
+    line-height: 1.4;
+}
+
+.checkbox-field a{
+    color: #ff8fa3;
+}
+
+.nav-avatar{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: pink;
+    color: #2c4250;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background0.2s;
+}
+.nav-avatar:hover{
+    background: #ff8fa3;
+    transform: scale(1.05); 
+}
+
+.empty-state{
+    border-radius: 12px; 
+}
+
+input, textarea{
+    border-radius: 4px;   
+}
+
+.post-image{
+    width: 100%;
+    max-height: 360px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 10px 0;
+}
+
+.field-image label{
+    display: block;
+    font-size: 13px;
+    color: whitesmoke;
+    opacity: 0.7;
+    margin-bottom: 6px;
+    text-align: left;
+}
+
+.field-image input[type="file"]{
+    color: whitesmoke;
+    font-size: 14px;
+    width: 240px;
+}
+
+
+ 
+
+  
+
+
